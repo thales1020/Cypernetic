@@ -37,7 +37,11 @@ export function AskPanel({ caseFile }: { caseFile: CaseFile }) {
       const res = await fetch("/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sources: caseFile.sources, analysis: caseFile.analysis, messages: history }),
+        body: JSON.stringify({
+          sources: caseFile.sources,
+          analysis: caseFile.analysis,
+          messages: history.filter((m) => m.content.trim() && !m.content.startsWith("⚠")),
+        }),
       });
       if (!res.ok || !res.body) throw new Error(await res.text());
       const reader = res.body.getReader();

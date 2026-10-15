@@ -28,7 +28,6 @@ export async function segmentText(text: string): Promise<RawSource[]> {
     system: SEGMENT_SYSTEM,
     prompt: text,
     schema: SegmentSchema,
-    maxTokens: 32000,
   });
   return out.messages.map((m) => ({
     channel: m.channel,
@@ -63,6 +62,9 @@ export async function analyzeCase(sources: SourceItem[]): Promise<CaseAnalysis> 
     .filter((c) => c.sourceIds.length > 0)
     .sort((a, b) => a.madeAt.localeCompare(b.madeAt))
     .map((c, i) => ({ ...c, id: `p${i + 1}` }));
+
+  const dropped = extraction.events.length - events.length + extraction.commitments.length - commitments.length;
+  if (dropped) console.warn(`analyzeCase: dropped ${dropped} items with no valid citation`);
 
   const eventList = events
     .map((e) => `${e.id} | ${e.time} | ${e.kind} | ${e.actor} | ${e.title} | ${e.sourceIds.join(",")}`)
