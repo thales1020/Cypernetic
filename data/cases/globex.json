@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "id": "globex",
+    "title": "Globex: SSO outage and missing RCA",
+    "client": "Globex Corp",
+    "summary": "A 4-hour SSO outage locks out 900 users. The RCA promised within 5 business days never arrives.",
+    "sample": true
+  },
+  "sources": [
+    { "channel": "ticket", "thread": "SUP-5120", "subject": "URGENT: nobody can log in via SSO", "author": "Kenji Watanabe (Globex IT)", "timestamp": "2026-10-01T13:05:00Z", "body": "All of our ~900 users get 'SAML assertion invalid' when logging in via Okta since about 13:00 UTC. Nothing changed on our side. Sev 1." },
+    { "channel": "ticket", "thread": "SUP-5120", "author": "Minh Tran (Support)", "timestamp": "2026-10-01T13:18:00Z", "body": "Hi Kenji, confirmed. We see SAML failures for multiple customers. Treating as P1 incident INC-88. Next update in 30 minutes." },
+    { "channel": "chat", "thread": "#incident-88", "author": "Dmitri Volkov (SRE)", "timestamp": "2026-10-01T13:25:00Z", "body": "Root cause looks like the SAML signing cert rotation that ran at 12:58. New cert not published to the metadata endpoint for EU region. Customers pinning the old cert fail." },
+    { "channel": "chat", "thread": "#incident-88", "author": "Dmitri Volkov (SRE)", "timestamp": "2026-10-01T14:40:00Z", "body": "Rolling back cert in EU. Need customers on Okta to re-import metadata if rollback doesn't propagate." },
+    { "channel": "ticket", "thread": "SUP-5120", "author": "Minh Tran (Support)", "timestamp": "2026-10-01T14:55:00Z", "body": "Update: identified a certificate rotation issue. Rollback in progress. If login still fails after 15:30 UTC please re-import our SAML metadata in Okta." },
+    { "channel": "ticket", "thread": "SUP-5120", "author": "Kenji Watanabe (Globex IT)", "timestamp": "2026-10-01T17:10:00Z", "body": "Logins are working again after re-importing metadata. We lost about 4 hours of productivity for 900 people. We need a full RCA and what you'll do to prevent this." },
+    { "channel": "ticket", "thread": "SUP-5120", "author": "Minh Tran (Support)", "timestamp": "2026-10-01T17:30:00Z", "body": "Understood and sorry for the impact. Per our incident policy you'll receive a written RCA within 5 business days (by Oct 8)." },
+    { "channel": "chat", "thread": "#incident-88", "author": "Dmitri Volkov (SRE)", "timestamp": "2026-10-02T09:00:00Z", "body": "Postmortem doc drafted. Action items: staged cert rotation per region, metadata propagation check, customer notice 7 days before rotation. Who's sending the customer-facing RCA?" },
+    { "channel": "chat", "thread": "#incident-88", "author": "Minh Tran", "timestamp": "2026-10-02T09:15:00Z", "body": "I think the CSM sends RCAs for enterprise accounts? Globex is Sarah's I think." },
+    { "channel": "chat", "thread": "#incident-88", "author": "Tom Becker", "timestamp": "2026-10-02T09:20:00Z", "body": "Sarah's OOO till Oct 6, I'm covering. I'll take it once the postmortem is final." },
+    { "channel": "email", "thread": "Globex QBR", "subject": "QBR deck", "author": "Tom Becker (Account Manager)", "to": "Kenji Watanabe", "timestamp": "2026-10-02T16:00:00Z", "body": "Hi Kenji, attached is the QBR deck for next week. Uptime for the quarter: 99.98%. Looking forward to the session." },
+    { "channel": "email", "thread": "Globex QBR", "subject": "Re: QBR deck", "author": "Kenji Watanabe (Globex IT)", "to": "Tom Becker", "timestamp": "2026-10-03T08:30:00Z", "body": "Tom, 99.98% uptime? We were locked out for 4 hours two days ago. Does that not count? Also still waiting on the RCA." },
+    { "channel": "chat", "thread": "#incident-88", "author": "Dmitri Volkov (SRE)", "timestamp": "2026-10-05T10:00:00Z", "body": "Postmortem finalized and approved. Link in the incident channel. @tom it's ready for the customer version." },
+    { "channel": "ticket", "thread": "SUP-5120", "author": "Kenji Watanabe (Globex IT)", "timestamp": "2026-10-09T07:00:00Z", "body": "It's Oct 9. We were promised an RCA by Oct 8. Nothing received. Our CISO is asking whether we should keep Brightdesk as an SSO-critical system." },
+    { "channel": "chat", "thread": "#cs-leads", "author": "Lisa Park (VP Customer Success)", "timestamp": "2026-10-09T08:00:00Z", "body": "Globex RCA is overdue and their CISO is involved. Who owned sending it? Tom, Sarah?" },
+    { "channel": "chat", "thread": "#cs-leads", "author": "Tom Becker", "timestamp": "2026-10-09T08:20:00Z", "body": "I handed Globex back to Sarah on Oct 6 when she returned, assumed she'd send it." },
+    { "channel": "chat", "thread": "#cs-leads", "author": "Sarah Okafor", "timestamp": "2026-10-09T08:25:00Z", "body": "Tom's handback note didn't mention the RCA at all 😬 sending it today." }
+  ]
+}
