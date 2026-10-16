@@ -6,14 +6,22 @@ export const MODEL = process.env.CLAUDE_MODEL ?? "claude-opus-5-5";
 const EFFORT = (process.env.CLAUDE_EFFORT ?? "medium") as "low" | "medium" | "high";
 
 // Server-side refusal fallback: if the model declines, the API retries on its default fallback model.
+// OAuth access tokens (ANTHROPIC_AUTH_TOKEN) need the oauth beta header; API keys don't.
+const usingOAuth = !process.env.ANTHROPIC_API_KEY && Boolean(process.env.ANTHROPIC_AUTH_TOKEN);
 const FALLBACK = {
-  betas: ["server-side-fallback-2026-07-01"] as Anthropic.Beta.AnthropicBeta[],
+  betas: [
+    "server-side-fallback-2026-07-01",
+    ...(usingOAuth ? ["oauth-2025-04-20"] : []),
+  ] as Anthropic.Beta.AnthropicBeta[],
   fallbacks: "default" as const,
 };
 
 let client: Anthropic | null = null;
 export function claude(): Anthropic {
-  client ??= new Anthropic();
+  // Empty strings in .env would shadow each other, so pass only the credential that is set.
+  client ??= process.env.ANTHROPIC_API_KEY
+    ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY, authToken: null })
+    : new Anthropic({ apiKey: null, authToken: process.env.ANTHROPIC_AUTH_TOKEN });
   return client;
 }
 
