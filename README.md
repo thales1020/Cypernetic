@@ -2,6 +2,8 @@
 
 > When a client escalates, find out **who did what, when, what was promised, and what went wrong** in minutes instead of days.
 
+**Live demo:** https://cypernetic.vercel.app
+
 Built for the *Agent in the Shell* hackathon, **Customer Success: The Investigator** challenge.
 
 ## The problem
@@ -28,18 +30,18 @@ Give it the raw history of a case (tickets, emails, chat) and it builds one inve
 
 ```
 tickets / emails / chat (paste or upload .eml .json .csv .txt)
-   │  lib/ingest.ts: deterministic parsers; unstructured text is split by Claude
+   │  lib/ingest.ts: deterministic parsers; unstructured text is split by the LLM
    ▼
 normalized messages, sorted by time, with stable IDs (T1, E1, C1…)
-   │  lib/analyze.ts, pass 1: Claude structured output (Zod schema)
+   │  lib/analyze.ts, pass 1: LLM structured output (Zod schema)
    ▼        → actors, events, commitments + status, each with sourceIds
    │  validation: drop hallucinated citations and uncited items
-   │  pass 2: Claude synthesis → phases, root causes, contradictions, client reply
+   │  pass 2: LLM synthesis → phases, root causes, contradictions, client reply
    ▼
 Case File UI (Next.js)  ←→  /api/ask: streaming Q&A grounded in the record
 ```
 
-- **Model:** Claude (`claude-opus-5-5`) via the official `@anthropic-ai/sdk`, using structured outputs (`messages.parse` + Zod) and streaming.
+- **Model:** Gemini (`gemini-3.5-flash`, falling back to `gemini-2.5-flash` when overloaded) via the Vercel AI SDK: structured output with Zod schemas, and streaming for Q&A. Claude works too: set `ANTHROPIC_API_KEY` instead.
 - **Sample cases** (`data/cases/*.json`) are realistic multi-channel escalations. Their analyses are precomputed into `data/analysis/` so the demo opens instantly.
 - **Your own cases** are analyzed live and stored only in your browser (localStorage). There is no database and no login.
 
@@ -53,7 +55,7 @@ Case File UI (Next.js)  ←→  /api/ask: streaming Q&A grounded in the record
 
 ```bash
 npm install
-cp .env.example .env.local   # add ANTHROPIC_API_KEY
+cp .env.example .env.local   # add GOOGLE_GENERATIVE_AI_API_KEY
 npm run dev                  # http://localhost:3000
 npm run precompute           # re-generate sample analyses (optional)
 ```

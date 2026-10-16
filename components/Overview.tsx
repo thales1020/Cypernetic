@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { CaseAnalysis } from "@/lib/types";
-import { Cites, CitedText, daysBetween, fmtDate, Panel, StatusBadge } from "./ui";
+import { Cites, CitedText, fmtDate, Panel, StatusBadge } from "./ui";
 
 export function Overview({ analysis, onTab }: { analysis: CaseAnalysis; onTab: (t: string) => void }) {
   const [copied, setCopied] = useState(false);
@@ -47,7 +47,6 @@ export function Overview({ analysis, onTab }: { analysis: CaseAnalysis; onTab: (
           ) : (
             <ul className="space-y-3">
               {flagged.map((c) => {
-                const late = c.dueAt ? daysBetween(c.dueAt, new Date().toISOString()) : null;
                 return (
                   <li key={c.id} className="border-l-2 border-red/60 pl-3">
                     <div className="flex items-center gap-2 flex-wrap">
@@ -59,7 +58,6 @@ export function Overview({ analysis, onTab }: { analysis: CaseAnalysis; onTab: (
                     <div className="font-mono text-[11px] text-faint mt-1 flex flex-wrap gap-x-3 items-center">
                       <span>made {fmtDate(c.madeAt, false)}</span>
                       {c.dueAt && <span>due {fmtDate(c.dueAt, false)}</span>}
-                      {c.status === "at-risk" && late !== null && late < 0 && <span>{-late}d left</span>}
                       <Cites ids={c.sourceIds} />
                     </div>
                   </li>

@@ -85,7 +85,7 @@ export default function NewCase() {
       <h1 className="text-3xl font-semibold tracking-tight">Open a case file</h1>
       <p className="text-muted mt-2">
         Paste the raw history in any format: email threads, ticket comments, Slack messages. Or upload exports
-        (.eml, Slack .json, ticket .csv, .txt). Claude reconstructs the timeline and every commitment.
+        (.eml, Slack .json, ticket .csv, .txt). The AI reconstructs the timeline and every commitment.
       </p>
 
       <form onSubmit={submit} className="mt-8 space-y-5">
