@@ -10,7 +10,9 @@
     "precompute": "tsx --env-file-if-exists=.env.local scripts/precompute.ts"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.134.0",
+    "@ai-sdk/anthropic": "^4.0.81",
+    "@ai-sdk/google": "^4.0.98",
+    "ai": "^7.0.142",
     "next": "16.4.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",

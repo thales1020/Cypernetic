@@ -1,0 +1,421 @@
+{
+  "headline": "A critical SSO outage for Globex was compounded by a delayed Root Cause Analysis (RCA), caused by internal handover failures and inconsistent uptime reporting, leading to CISO-level escalation.",
+  "actors": [
+    {
+      "name": "Kenji Watanabe",
+      "side": "client",
+      "role": "IT",
+      "summary": "Client IT contact who reported the critical SSO outage, questioned reported uptime, and escalated the overdue RCA."
+    },
+    {
+      "name": "Minh Tran",
+      "side": "internal",
+      "role": "Support",
+      "summary": "Support agent who confirmed the P1 incident, provided initial updates, and promised the client an RCA by October 8."
+    },
+    {
+      "name": "Dmitri Volkov",
+      "side": "internal",
+      "role": "SRE",
+      "summary": "SRE who identified the incident's root cause, executed the rollback, and finalized the postmortem document."
+    },
+    {
+      "name": "Tom Becker",
+      "side": "internal",
+      "role": "Account Manager",
+      "summary": "Account Manager covering for Sarah, who committed to sending the RCA but failed to do so before handing the account back."
+    },
+    {
+      "name": "Sarah Okafor",
+      "side": "internal",
+      "role": "Account Manager",
+      "summary": "Account Manager for Globex who returned from OOO, received the account handback without RCA mention, and committed to sending the RCA after it was escalated."
+    },
+    {
+      "name": "Lisa Park",
+      "side": "internal",
+      "role": "VP Customer Success",
+      "summary": "VP Customer Success who escalated the overdue RCA internally after the client's CISO became involved."
+    }
+  ],
+  "events": [
+    {
+      "time": "2026-10-01 13:05 UTC",
+      "actor": "Kenji Watanabe",
+      "kind": "issue",
+      "title": "Client reports critical SSO login failure",
+      "detail": "Kenji reported that all ~900 Globex users were unable to log in via Okta SSO, receiving 'SAML assertion invalid' errors since approximately 13:00 UTC.",
+      "sourceIds": [
+        "T1"
+      ],
+      "id": "ev1"
+    },
+    {
+      "time": "2026-10-01 13:18 UTC",
+      "actor": "Minh Tran",
+      "kind": "action",
+      "title": "Support confirms issue and declares P1 incident",
+      "detail": "Minh confirmed that other customers were experiencing SAML failures and classified the situation as a P1 incident (INC-88).",
+      "sourceIds": [
+        "T2"
+      ],
+      "id": "ev2"
+    },
+    {
+      "time": "2026-10-01 13:25 UTC",
+      "actor": "Dmitri Volkov",
+      "kind": "decision",
+      "title": "SRE identifies SAML certificate rotation as root cause",
+      "detail": "Dmitri determined the issue was caused by a SAML signing certificate rotation at 12:58 UTC, with the new cert not published to the EU region's metadata endpoint.",
+      "sourceIds": [
+        "C1"
+      ],
+      "id": "ev3"
+    },
+    {
+      "time": "2026-10-01 14:40 UTC",
+      "actor": "Dmitri Volkov",
+      "kind": "action",
+      "title": "SRE initiates certificate rollback for EU region",
+      "detail": "Dmitri began rolling back the problematic certificate in the EU region to resolve the login failures.",
+      "sourceIds": [
+        "C2"
+      ],
+      "id": "ev4"
+    },
+    {
+      "time": "2026-10-01 14:55 UTC",
+      "actor": "Minh Tran",
+      "kind": "action",
+      "title": "Support updates client on cert issue and rollback",
+      "detail": "Minh informed Kenji about the certificate rotation issue and the ongoing rollback, advising re-import of SAML metadata if login persisted after 15:30 UTC.",
+      "sourceIds": [
+        "T3"
+      ],
+      "id": "ev5"
+    },
+    {
+      "time": "2026-10-01 17:10 UTC",
+      "actor": "Kenji Watanabe",
+      "kind": "resolution",
+      "title": "Client confirms login restored, requests RCA",
+      "detail": "Kenji confirmed that logins were working again after they re-imported the metadata, noting a 4-hour productivity loss and requesting a full RCA and prevention plan.",
+      "sourceIds": [
+        "T4"
+      ],
+      "id": "ev6"
+    },
+    {
+      "time": "2026-10-01 17:30 UTC",
+      "actor": "Minh Tran",
+      "kind": "promise",
+      "title": "Support promises RCA within 5 business days",
+      "detail": "Minh committed to providing a written Root Cause Analysis (RCA) to Kenji by October 8th, in line with incident policy.",
+      "sourceIds": [
+        "T5"
+      ],
+      "id": "ev7"
+    },
+    {
+      "time": "2026-10-02 09:00 UTC",
+      "actor": "Dmitri Volkov",
+      "kind": "action",
+      "title": "SRE drafts postmortem and plans preventative actions",
+      "detail": "Dmitri drafted the postmortem document, identifying action items like staged cert rotation and metadata propagation checks, and inquired about sending the customer-facing RCA.",
+      "sourceIds": [
+        "C3"
+      ],
+      "id": "ev8"
+    },
+    {
+      "time": "2026-10-02 09:15 UTC",
+      "actor": "Minh Tran",
+      "kind": "decision",
+      "title": "Support suggests CSM for RCA delivery",
+      "detail": "Minh suggested that Account Managers (CSMs) typically handle RCAs for enterprise accounts and identified Sarah as the CSM for Globex.",
+      "sourceIds": [
+        "C4"
+      ],
+      "id": "ev9"
+    },
+    {
+      "time": "2026-10-02 09:20 UTC",
+      "actor": "Tom Becker",
+      "kind": "promise",
+      "title": "Covering AM commits to sending RCA",
+      "detail": "Tom, covering for Sarah who was OOO, committed to sending the customer-facing RCA once the postmortem was finalized.",
+      "sourceIds": [
+        "C5"
+      ],
+      "id": "ev10"
+    },
+    {
+      "time": "2026-10-02 16:00 UTC",
+      "actor": "Tom Becker",
+      "kind": "action",
+      "title": "AM sends QBR deck with reported uptime",
+      "detail": "Tom sent Kenji the QBR deck, which stated a 99.98% uptime for the quarter.",
+      "sourceIds": [
+        "E1"
+      ],
+      "id": "ev11"
+    },
+    {
+      "time": "2026-10-03 08:30 UTC",
+      "actor": "Kenji Watanabe",
+      "kind": "escalation",
+      "title": "Client challenges QBR uptime and reiterates RCA request",
+      "detail": "Kenji questioned the QBR's uptime figure given the recent 4-hour outage and again asked for the overdue RCA.",
+      "sourceIds": [
+        "E2"
+      ],
+      "id": "ev12"
+    },
+    {
+      "time": "2026-10-05 10:00 UTC",
+      "actor": "Dmitri Volkov",
+      "kind": "action",
+      "title": "SRE finalizes and approves postmortem",
+      "detail": "Dmitri announced that the internal postmortem document was finalized and approved, making it ready for the customer-facing version.",
+      "sourceIds": [
+        "C6"
+      ],
+      "id": "ev13"
+    },
+    {
+      "time": "2026-10-06 00:00 UTC",
+      "actor": "Tom Becker",
+      "kind": "miss",
+      "title": "AM hands back account without RCA mention",
+      "detail": "Upon Sarah's return from OOO, Tom handed back the Globex account but failed to communicate the outstanding RCA commitment to her.",
+      "sourceIds": [
+        "C8",
+        "C9"
+      ],
+      "id": "ev14"
+    },
+    {
+      "time": "2026-10-08 23:59 UTC",
+      "actor": "Minh Tran",
+      "kind": "miss",
+      "title": "RCA deadline passes without delivery",
+      "detail": "The promised deadline of October 8th for delivering the RCA to Globex passed without the document being sent or any communication about its status.",
+      "sourceIds": [
+        "T5",
+        "T6"
+      ],
+      "id": "ev15"
+    },
+    {
+      "time": "2026-10-09 07:00 UTC",
+      "actor": "Kenji Watanabe",
+      "kind": "escalation",
+      "title": "Client escalates overdue RCA, CISO involved",
+      "detail": "Kenji reported that the RCA was overdue since October 8th and stated that their CISO was now questioning whether to keep Brightdesk as an SSO-critical system.",
+      "sourceIds": [
+        "T6"
+      ],
+      "id": "ev16"
+    },
+    {
+      "time": "2026-10-09 08:00 UTC",
+      "actor": "Lisa Park",
+      "kind": "escalation",
+      "title": "VP CS escalates overdue RCA internally",
+      "detail": "Lisa escalated the overdue Globex RCA within the CS leads channel, asking for clarification on ownership.",
+      "sourceIds": [
+        "C7"
+      ],
+      "id": "ev17"
+    },
+    {
+      "time": "2026-10-09 08:20 UTC",
+      "actor": "Tom Becker",
+      "kind": "action",
+      "title": "AM clarifies account handback timing",
+      "detail": "Tom explained that he handed Globex back to Sarah on October 6th when she returned, implying he assumed she would send the RCA.",
+      "sourceIds": [
+        "C8"
+      ],
+      "id": "ev18"
+    },
+    {
+      "time": "2026-10-09 08:25 UTC",
+      "actor": "Sarah Okafor",
+      "kind": "promise",
+      "title": "Responsible AM commits to sending RCA today",
+      "detail": "Sarah acknowledged that the handback note from Tom did not mention the RCA and committed to sending it later the same day.",
+      "sourceIds": [
+        "C9"
+      ],
+      "id": "ev19"
+    }
+  ],
+  "commitments": [
+    {
+      "by": "Minh Tran",
+      "to": "Kenji Watanabe",
+      "what": "Provide the next update on incident INC-88.",
+      "madeAt": "2026-10-01 13:18 UTC",
+      "dueAt": "2026-10-01 13:48 UTC",
+      "status": "broken",
+      "statusReason": "The next update was provided at 14:55 UTC [T3], which is more than 30 minutes after the commitment was made [T2].",
+      "sourceIds": [
+        "T2"
+      ],
+      "id": "p1"
+    },
+    {
+      "by": "Minh Tran",
+      "to": "Kenji Watanabe",
+      "what": "Deliver a written Root Cause Analysis (RCA) per incident policy.",
+      "madeAt": "2026-10-01 17:30 UTC",
+      "dueAt": "2026-10-08",
+      "status": "broken",
+      "statusReason": "Kenji reported on October 9th that no RCA had been received by the stated due date of October 8th [T6].",
+      "sourceIds": [
+        "T5"
+      ],
+      "id": "p2"
+    },
+    {
+      "by": "Tom Becker",
+      "to": "Minh Tran",
+      "what": "Send the customer-facing RCA to Globex.",
+      "madeAt": "2026-10-02 09:20 UTC",
+      "dueAt": "2026-10-08",
+      "status": "broken",
+      "statusReason": "Tom handed the Globex account back to Sarah on Oct 6 without mentioning the RCA [C8, C9], and the RCA was not sent by the Oct 8 deadline [T6].",
+      "sourceIds": [
+        "C5"
+      ],
+      "id": "p3"
+    },
+    {
+      "by": "Sarah Okafor",
+      "to": "Kenji Watanabe",
+      "what": "Send the overdue RCA to Globex.",
+      "madeAt": "2026-10-09 08:25 UTC",
+      "dueAt": "2026-10-09",
+      "status": "open",
+      "statusReason": "This commitment was made on October 9th for delivery on the same day. There is no further record to confirm its delivery within the provided information [C9].",
+      "sourceIds": [
+        "C9"
+      ],
+      "id": "p4"
+    }
+  ],
+  "phases": [
+    {
+      "name": "Incident & Resolution",
+      "start": "2026-10-01 13:05 UTC",
+      "end": "2026-10-01 17:10 UTC",
+      "summary": "Globex reported a critical SSO outage affecting 900 users due to a SAML certificate issue. SRE identified the root cause and initiated a rollback. Globex resolved login issues by re-importing metadata.",
+      "eventIds": [
+        "ev1",
+        "ev2",
+        "ev3",
+        "ev4",
+        "ev5",
+        "ev6"
+      ]
+    },
+    {
+      "name": "RCA Promise & Assignment",
+      "start": "2026-10-01 17:30 UTC",
+      "end": "2026-10-02 09:20 UTC",
+      "summary": "Support promised an RCA within 5 business days (by Oct 8). SRE drafted a postmortem, and the covering Account Manager (Tom Becker) committed to sending the customer-facing RCA.",
+      "eventIds": [
+        "ev7",
+        "ev8",
+        "ev9",
+        "ev10"
+      ]
+    },
+    {
+      "name": "Uptime Contradiction",
+      "start": "2026-10-02 16:00 UTC",
+      "end": "2026-10-05 10:00 UTC",
+      "summary": "The Account Manager sent a QBR deck reporting 99.98% uptime, which the client immediately challenged given their recent 4-hour outage. SRE finalized the internal postmortem document.",
+      "eventIds": [
+        "ev11",
+        "ev12",
+        "ev13"
+      ]
+    },
+    {
+      "name": "RCA Overdue & Escalation",
+      "start": "2026-10-06 00:00 UTC",
+      "end": "2026-10-09 08:25 UTC",
+      "summary": "The RCA due date (Oct 8) passed without delivery. The client escalated, involving their CISO. Internal investigation revealed a handover failure, and the primary Account Manager committed to sending the RCA immediately.",
+      "eventIds": [
+        "ev14",
+        "ev15",
+        "ev16",
+        "ev17",
+        "ev18",
+        "ev19"
+      ]
+    }
+  ],
+  "whatWentWrong": [
+    {
+      "title": "Inadequate Pre-Deployment Checks",
+      "detail": "The SAML signing certificate rotation caused a widespread outage because the new certificate was not properly published to the metadata endpoint for the EU region [C1]. This fundamental process failure led directly to the client's login issues.",
+      "sourceIds": [
+        "C1"
+      ]
+    },
+    {
+      "title": "Failure to Track Critical Deliverables during Handoff",
+      "detail": "The commitment to deliver the RCA by October 8th was lost during an account manager handover. The covering AM, Tom Becker, did not include the outstanding RCA in his handback notes to Sarah Okafor [C8, C9], resulting in the deadline being missed [T6].",
+      "sourceIds": [
+        "C8",
+        "C9",
+        "T6"
+      ]
+    },
+    {
+      "title": "Inconsistent Client Communication on Status",
+      "detail": "A promise for the next incident update within 30 minutes [T2] was missed, with the actual update coming after 97 minutes [T3]. While a critical incident was ongoing, consistent adherence to communication commitments is vital.",
+      "sourceIds": [
+        "T2",
+        "T3"
+      ]
+    },
+    {
+      "title": "Lack of Verification for Client-Facing Metrics",
+      "detail": "The QBR deck sent to Globex reported 99.98% uptime [E1], a figure immediately contradicted by the client's recent 4-hour outage just two days prior [E2]. This indicates a lack of internal review to ensure client-facing data reflects their actual experience.",
+      "sourceIds": [
+        "E1",
+        "E2"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "title": "Uptime Reporting vs. Client Experience",
+      "detail": "Tom Becker reported 99.98% uptime in the QBR deck [E1], which directly conflicted with Kenji Watanabe's experience of a 4-hour lockout just two days prior [E2].",
+      "sourceIds": [
+        "E1",
+        "E2"
+      ]
+    },
+    {
+      "title": "RCA Handoff Communication",
+      "detail": "Tom Becker stated he 'assumed' Sarah Okafor would send the RCA after he handed back the account on Oct 6 [C8]. However, Sarah confirmed that 'Tom's handback note didn't mention the RCA at all' [C9], indicating a clear breakdown in communication regarding a critical outstanding item.",
+      "sourceIds": [
+        "C8",
+        "C9"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "Was the RCA actually sent by Sarah Okafor on October 9th as promised [C9]?",
+    "What specific processes are in place (or will be) to ensure certificate metadata propagation is verified *before* a rotation impacts production?",
+    "What is the current internal process for reviewing and approving uptime metrics presented to clients in QBRs, particularly after significant incidents?"
+  ],
+  "clientReply": "Dear Kenji, I sincerely apologize for the significant impact the recent SSO outage had on Globex and for the unacceptable delay in providing your Root Cause Analysis. We understand the severity of losing 4 hours of productivity for 900 users and the frustration caused by the missed RCA deadline. The initial incident stemmed from a failed SAML certificate rotation and inadequate metadata propagation. The subsequent delay in the RCA was due to internal handover and tracking failures. We are implementing immediate changes: enhanced pre-deployment checks for certificate rotations, a dedicated RCA tracking system for enterprise clients, and mandatory RCA status updates in account handover protocols. We are committed to regaining your trust and ensuring such lapses do not recur. You will receive the full RCA by end of day today, October 9th, and I will personally follow up to discuss these improvements.",
+  "generatedAt": "2026-10-16T13:14:34.404Z",
+  "model": "gemini-2.5-flash"
+}

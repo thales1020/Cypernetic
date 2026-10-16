@@ -1,0 +1,537 @@
+{
+  "headline": "Initial sales commitments for 5-year data migration and HL7 integration were not reflected in the SOW, causing client escalation and project delays.",
+  "actors": [
+    {
+      "name": "Jake Morris",
+      "side": "internal",
+      "role": "Sales",
+      "summary": "Initiated the sales process with broad promises, failed to ensure SOW aligned with client expectations, and downplayed internal concerns about scope."
+    },
+    {
+      "name": "Rebecca Chen",
+      "side": "client",
+      "role": "Client Contact",
+      "summary": "The primary client contact who confirmed critical requirements and escalated when the delivered scope did not match initial promises."
+    },
+    {
+      "name": "Olivia Grant",
+      "side": "internal",
+      "role": "Deal Desk",
+      "summary": "Identified and flagged a mismatch between Jake's initial promises and the standard contract scope early in the process."
+    },
+    {
+      "name": "Ana Silva",
+      "side": "internal",
+      "role": "Implementation",
+      "summary": "Led the implementation, identified the scope discrepancy with the client, sought internal clarification, and managed the adjusted project."
+    },
+    {
+      "name": "Marcus Webb",
+      "side": "client",
+      "role": "Acme Health IT",
+      "summary": "The client's IT lead who questioned the implementation scope during the project based on original expectations."
+    },
+    {
+      "name": "Lisa Park",
+      "side": "internal",
+      "role": "VP Customer Success",
+      "summary": "Intervened in the escalation, took ownership of the discrepancy, and provided a resolution plan to the client."
+    }
+  ],
+  "events": [
+    {
+      "time": "2026-07-14 17:20 UTC",
+      "actor": "Jake Morris",
+      "kind": "promise",
+      "title": "Proposed 5-year history and HL7 support",
+      "detail": "Jake Morris proposed that Brightdesk would migrate Acme Health's full 5-year patient-engagement history and support HL7 feeds out of the box during the demo follow-up. This set the client's initial expectations for the project scope.",
+      "sourceIds": [
+        "E1"
+      ],
+      "id": "ev1"
+    },
+    {
+      "time": "2026-07-15 08:05 UTC",
+      "actor": "Rebecca Chen",
+      "kind": "action",
+      "title": "Confirmed critical need for 5-year history",
+      "detail": "Rebecca Chen confirmed that the full 5-year history was critical for Acme Health's compliance reporting, reinforcing her understanding of the scope as promised by Jake.",
+      "sourceIds": [
+        "E2"
+      ],
+      "id": "ev2"
+    },
+    {
+      "time": "2026-07-21 10:00 UTC",
+      "actor": "Jake Morris",
+      "kind": "action",
+      "title": "Acme Health SOW release",
+      "detail": "Jake Morris announced that the Acme Health Statement of Work (SOW) was being sent out, indicating the deal was progressing.",
+      "sourceIds": [
+        "C1"
+      ],
+      "id": "ev3"
+    },
+    {
+      "time": "2026-07-21 10:30 UTC",
+      "actor": "Olivia Grant",
+      "kind": "issue",
+      "title": "Flagged scope discrepancy",
+      "detail": "Olivia Grant identified that the 'standard implementation package' only covered 24 months of history via CSV and no HL7, conflicting with Jake's earlier promises.",
+      "sourceIds": [
+        "C2"
+      ],
+      "id": "ev4"
+    },
+    {
+      "time": "2026-07-21 10:34 UTC",
+      "actor": "Jake Morris",
+      "kind": "decision",
+      "title": "Dismissed scope concerns",
+      "detail": "Jake Morris dismissed Olivia Grant's concerns about the scope discrepancy, stating 'they're fine' and details could be sorted out in implementation, thereby allowing the misaligned SOW to proceed.",
+      "sourceIds": [
+        "C3"
+      ],
+      "id": "ev5"
+    },
+    {
+      "time": "2026-07-29 09:00 UTC",
+      "actor": "Olivia Grant",
+      "kind": "action",
+      "title": "SOW signed with standard scope",
+      "detail": "The SOW was signed, formalizing the scope as a standard implementation, 24-month history migration via CSV, and a go-live target of September 30.",
+      "sourceIds": [
+        "T1"
+      ],
+      "id": "ev6"
+    },
+    {
+      "time": "2026-08-04 14:00 UTC",
+      "actor": "Ana Silva",
+      "kind": "action",
+      "title": "Kickoff and data request",
+      "detail": "Ana Silva conducted the project kickoff with Rebecca Chen and Marcus Webb, and requested the data extract from LegacyCRM.",
+      "sourceIds": [
+        "T2"
+      ],
+      "id": "ev7"
+    },
+    {
+      "time": "2026-08-04 14:00 UTC",
+      "actor": "Ana Silva",
+      "kind": "promise",
+      "title": "Set test import milestone",
+      "detail": "Ana Silva set the next milestone as a test import by August 29, communicating a clear deliverable for the client.",
+      "sourceIds": [
+        "T2"
+      ],
+      "id": "ev8"
+    },
+    {
+      "time": "2026-08-29 16:00 UTC",
+      "actor": "Ana Silva",
+      "kind": "action",
+      "title": "Completed 24-month test import",
+      "detail": "Ana Silva successfully completed the test import of the 24-month dataset, reporting 1.2M records matched and project on track for go-live.",
+      "sourceIds": [
+        "E3"
+      ],
+      "id": "ev9"
+    },
+    {
+      "time": "2026-09-01 09:12 UTC",
+      "actor": "Marcus Webb",
+      "kind": "issue",
+      "title": "Client questioned scope discrepancy",
+      "detail": "Marcus Webb questioned why only 24 months of data were imported when they sent the full 5-year extract, and inquired about the HL7 feed, highlighting the client's expectations not aligning with the implemented scope.",
+      "sourceIds": [
+        "E4"
+      ],
+      "id": "ev10"
+    },
+    {
+      "time": "2026-09-01 09:40 UTC",
+      "actor": "Ana Silva",
+      "kind": "escalation",
+      "title": "Internal clarification on scope",
+      "detail": "Ana Silva raised the client's scope concerns internally to Jake Morris, asking if additional promises regarding 5-year history and HL7 were made.",
+      "sourceIds": [
+        "C4"
+      ],
+      "id": "ev11"
+    },
+    {
+      "time": "2026-09-01 15:20 UTC",
+      "actor": "Jake Morris",
+      "kind": "action",
+      "title": "Admitted mentioning full history",
+      "detail": "Jake Morris admitted he 'might have mentioned the full history' in the demo, suggesting to proceed with it despite the SOW, without fully understanding the implications.",
+      "sourceIds": [
+        "C5"
+      ],
+      "id": "ev12"
+    },
+    {
+      "time": "2026-09-01 15:35 UTC",
+      "actor": "Ana Silva",
+      "kind": "action",
+      "title": "Explained scope change impact",
+      "detail": "Ana Silva clarified that changing to a 5-year history (4x volume, different schema) and HL7 integration were significant scope changes requiring 3-4 extra weeks, demonstrating the complexity Jake underestimated.",
+      "sourceIds": [
+        "C6"
+      ],
+      "id": "ev13"
+    },
+    {
+      "time": "2026-09-02 10:00 UTC",
+      "actor": "Ana Silva",
+      "kind": "promise",
+      "title": "Promised update on scope by Friday",
+      "detail": "Ana Silva promised Marcus Webb that she would check with her team regarding the 5-year history and HL7, and provide an answer by Friday (Sept 5).",
+      "sourceIds": [
+        "E5"
+      ],
+      "id": "ev14"
+    },
+    {
+      "time": "2026-09-08 11:00 UTC",
+      "actor": "Ana Silva",
+      "kind": "miss",
+      "title": "Missed scope clarification deadline",
+      "detail": "Ana Silva documented that the scope question was still open with sales, blocking progress and putting the go-live at risk, indicating the promised answer by Sept 5 was not delivered.",
+      "sourceIds": [
+        "T3"
+      ],
+      "id": "ev15"
+    },
+    {
+      "time": "2026-09-15 13:00 UTC",
+      "actor": "Rebecca Chen",
+      "kind": "escalation",
+      "title": "Client escalated directly to sales",
+      "detail": "Rebecca Chen escalated to Jake Morris, citing his initial promise, the missed deadline for an answer (Sept 5), and the impending go-live, demanding an explanation.",
+      "sourceIds": [
+        "E6"
+      ],
+      "id": "ev16"
+    },
+    {
+      "time": "2026-09-15 14:00 UTC",
+      "actor": "Lisa Park",
+      "kind": "escalation",
+      "title": "VP Customer Success intervened",
+      "detail": "Lisa Park intervened in the escalation, requesting the full history of promises versus SOW details from Jake and Ana to understand the situation.",
+      "sourceIds": [
+        "C7"
+      ],
+      "id": "ev17"
+    },
+    {
+      "time": "2026-09-15 14:20 UTC",
+      "actor": "Olivia Grant",
+      "kind": "action",
+      "title": "Reiterated prior warning",
+      "detail": "Olivia Grant reiterated her earlier warning from July 21, confirming she had previously flagged the discrepancy between promised scope and standard SOW.",
+      "sourceIds": [
+        "C8"
+      ],
+      "id": "ev18"
+    },
+    {
+      "time": "2026-09-16 09:00 UTC",
+      "actor": "Lisa Park",
+      "kind": "resolution",
+      "title": "Committed to full scope and new timeline",
+      "detail": "Lisa Park acknowledged the discrepancy, committed to migrating the full 5-year history at no extra cost, moved the go-live to October 21, and promised an HL7 phase 2 plan by September 26, resolving the immediate client concern.",
+      "sourceIds": [
+        "E7"
+      ],
+      "id": "ev19"
+    },
+    {
+      "time": "2026-09-16 10:00 UTC",
+      "actor": "Ana Silva",
+      "kind": "action",
+      "title": "Updated ticket with approved scope changes",
+      "detail": "Ana Silva updated the implementation ticket with the scope changes approved by Lisa Park, including the 5-year history, revised go-live date, and HL7 plan deadline.",
+      "sourceIds": [
+        "T4"
+      ],
+      "id": "ev20"
+    },
+    {
+      "time": "2026-09-26 16:30 UTC",
+      "actor": "Ana Silva",
+      "kind": "action",
+      "title": "Delivered HL7 plan and passed 5-year test",
+      "detail": "Ana Silva sent the HL7 phase 2 plan to the client and confirmed that the 5-year migration test import (4.6M records) had passed, fulfilling the new commitments.",
+      "sourceIds": [
+        "T5"
+      ],
+      "id": "ev21"
+    }
+  ],
+  "commitments": [
+    {
+      "by": "Jake Morris",
+      "to": "Rebecca Chen",
+      "what": "Migrate full 5-year patient-engagement history from LegacyCRM",
+      "madeAt": "2026-07-14T17:20:00Z",
+      "dueAt": "2026-09-30",
+      "status": "kept",
+      "statusReason": "Initially broken by the signed SOW [T1], but re-committed by Lisa Park [E7] and successfully tested/implemented by Ana Silva [T5].",
+      "sourceIds": [
+        "E1",
+        "T1",
+        "E7",
+        "T5"
+      ],
+      "id": "p1"
+    },
+    {
+      "by": "Jake Morris",
+      "to": "Rebecca Chen",
+      "what": "HL7 feeds supported out of the box",
+      "madeAt": "2026-07-14T17:20:00Z",
+      "dueAt": "2026-09-30",
+      "status": "broken",
+      "statusReason": "This commitment was not included in the signed SOW [T1] and required a separate integration project, as clarified by Ana Silva [C6]. It was later re-scoped as a Phase 2 project [E7, T5].",
+      "sourceIds": [
+        "E1",
+        "T1",
+        "C6",
+        "E7",
+        "T5"
+      ],
+      "id": "p2"
+    },
+    {
+      "by": "Jake Morris",
+      "to": "Olivia Grant",
+      "what": "Details regarding scope can be sorted out during implementation",
+      "madeAt": "2026-07-21T10:34:00Z",
+      "dueAt": null,
+      "status": "broken",
+      "statusReason": "This claim was proven false when the client raised significant issues during implementation due to the scope discrepancy, leading to an escalation [E4, E6].",
+      "sourceIds": [
+        "C3"
+      ],
+      "id": "p3"
+    },
+    {
+      "by": "Internal Team (implied by T1)",
+      "to": "Acme Health",
+      "what": "Go-live target of September 30",
+      "madeAt": "2026-07-29T09:00:00Z",
+      "dueAt": "2026-09-30",
+      "status": "broken",
+      "statusReason": "The go-live was put at risk due to unresolved scope questions [T3] and later explicitly moved to October 21 as part of the resolution [E7].",
+      "sourceIds": [
+        "T1",
+        "T3",
+        "E7"
+      ],
+      "id": "p4"
+    },
+    {
+      "by": "Ana Silva",
+      "to": "Rebecca Chen and Marcus Webb",
+      "what": "Test import by August 29",
+      "madeAt": "2026-08-04T14:00:00Z",
+      "dueAt": "2026-08-29",
+      "status": "kept",
+      "statusReason": "Ana Silva reported completion of the test import on August 29 [E3].",
+      "sourceIds": [
+        "T2",
+        "E3"
+      ],
+      "id": "p5"
+    },
+    {
+      "by": "Ana Silva",
+      "to": "Marcus Webb",
+      "what": "Provide an answer on 5-year history and HL7 by Friday",
+      "madeAt": "2026-09-02T10:00:00Z",
+      "dueAt": "2026-09-05",
+      "status": "broken",
+      "statusReason": "Rebecca Chen explicitly stated that no answer was received by September 5, leading to her escalation [E6].",
+      "sourceIds": [
+        "E5",
+        "E6"
+      ],
+      "id": "p6"
+    },
+    {
+      "by": "Lisa Park",
+      "to": "Rebecca Chen",
+      "what": "Migrate the full 5-year history at no extra cost",
+      "madeAt": "2026-09-16T09:00:00Z",
+      "dueAt": "2026-10-21",
+      "status": "kept",
+      "statusReason": "Ana Silva confirmed the 5-year migration test import passed successfully on September 26 [T5].",
+      "sourceIds": [
+        "E7",
+        "T5"
+      ],
+      "id": "p7"
+    },
+    {
+      "by": "Lisa Park",
+      "to": "Rebecca Chen",
+      "what": "Go-live moved to October 21",
+      "madeAt": "2026-09-16T09:00:00Z",
+      "dueAt": "2026-10-21",
+      "status": "open",
+      "statusReason": "The commitment was made and implementation progressed towards this date, but the record does not extend to confirm the actual go-live on Oct 21 [E7, T4, T5].",
+      "sourceIds": [
+        "E7",
+        "T4"
+      ],
+      "id": "p8"
+    },
+    {
+      "by": "Lisa Park",
+      "to": "Rebecca Chen",
+      "what": "Scope HL7 as a Phase 2 with a firm plan by September 26",
+      "madeAt": "2026-09-16T09:00:00Z",
+      "dueAt": "2026-09-26",
+      "status": "kept",
+      "statusReason": "Ana Silva sent the HL7 phase 2 plan to Rebecca and Marcus on September 26 [T5].",
+      "sourceIds": [
+        "E7",
+        "T5"
+      ],
+      "id": "p9"
+    }
+  ],
+  "phases": [
+    {
+      "name": "Proposal & SOW",
+      "start": "2026-07-14",
+      "end": "2026-07-29",
+      "summary": "Sales proposed a 5-year history migration and HL7 support. Deal Desk identified a scope mismatch with the standard package, but sales proceeded with a standard SOW, which was signed.",
+      "eventIds": [
+        "ev1",
+        "ev2",
+        "ev3",
+        "ev4",
+        "ev5",
+        "ev6"
+      ]
+    },
+    {
+      "name": "Implementation Discrepancy",
+      "start": "2026-08-04",
+      "end": "2026-09-01",
+      "summary": "Implementation began, and a 24-month test import was completed. The client then questioned the 24-month scope and HL7, leading to internal clarification where sales acknowledged the initial over-commitment.",
+      "eventIds": [
+        "ev7",
+        "ev8",
+        "ev9",
+        "ev10",
+        "ev11",
+        "ev12",
+        "ev13"
+      ]
+    },
+    {
+      "name": "Internal Block & Escalation",
+      "start": "2026-09-02",
+      "end": "2026-09-15",
+      "summary": "Implementation was blocked awaiting scope clarification from sales. A promised client update was missed, leading to the client escalating to sales and subsequently to the VP of Customer Success.",
+      "eventIds": [
+        "ev14",
+        "ev15",
+        "ev16",
+        "ev17",
+        "ev18"
+      ]
+    },
+    {
+      "name": "Resolution & Re-commitment",
+      "start": "2026-09-16",
+      "end": "2026-09-26",
+      "summary": "The VP of Customer Success committed to the full 5-year migration at no extra cost, rescheduled go-live, and provided a plan for HL7 Phase 2. The 5-year migration test passed.",
+      "eventIds": [
+        "ev19",
+        "ev20",
+        "ev21"
+      ]
+    }
+  ],
+  "whatWentWrong": [
+    {
+      "title": "Unverified Sales Commitments",
+      "detail": "Sales committed to specific features (5-year history, HL7) without confirming they were part of the standard package or accounted for in the SOW [E1]. This created a mismatch between client expectations and the contracted scope from the outset.",
+      "sourceIds": [
+        "E1",
+        "C2"
+      ]
+    },
+    {
+      "title": "Failure to Act on Early Warning Signs",
+      "detail": "A Deal Desk agent explicitly flagged the scope discrepancy (24 months, no HL7) before the SOW was signed [C2]. This warning was dismissed by sales, leading to a signed contract that did not align with client needs [C3, T1].",
+      "sourceIds": [
+        "C2",
+        "C3",
+        "T1"
+      ]
+    },
+    {
+      "title": "Lack of Clear Handover from Sales to Implementation",
+      "detail": "The detailed scope promised by sales was not effectively transferred or clarified to the implementation team, who discovered the discrepancy only when the client raised it [E4, C4]. This indicates a process gap in ensuring alignment post-sale.",
+      "sourceIds": [
+        "E4",
+        "C4"
+      ]
+    },
+    {
+      "title": "Delayed Internal Resolution Process",
+      "detail": "After the client's initial query and an internal promise to update them by a specific date [E5], the internal team failed to provide a resolution or update, leaving the client in the dark for over a week [T3, E6]. This delay directly triggered the client's escalation.",
+      "sourceIds": [
+        "E5",
+        "T3",
+        "E6"
+      ]
+    }
+  ],
+  "contradictions": [
+    {
+      "title": "Sales Promise vs. Signed SOW Scope",
+      "detail": "Jake Morris's initial email to Acme Health explicitly promised 'full patient-engagement history (all 5 years)' and 'HL7 feeds are supported out of the box' [E1]. However, the signed SOW only covered '24-month history migration from LegacyCRM via CSV' with no mention of HL7 [T1, C2].",
+      "sourceIds": [
+        "E1",
+        "T1",
+        "C2"
+      ]
+    },
+    {
+      "title": "Dismissed Concerns vs. Critical Client Issue",
+      "detail": "When the scope discrepancy was raised internally, Jake Morris stated, 'they're fine, we can sort out the details in implementation' [C3]. In reality, this scope difference became a critical issue for the client during implementation, leading to an escalation and project delays [E4, E6, T3].",
+      "sourceIds": [
+        "C3",
+        "E4",
+        "E6",
+        "T3"
+      ]
+    },
+    {
+      "title": "Promised Update vs. Client Communication",
+      "detail": "Ana Silva promised Marcus Webb an update on the 5-year history and HL7 scope by 'Friday' (September 5) [E5]. However, on September 15, Rebecca Chen escalated, explicitly stating, 'We were also promised an answer by Sept 5 and haven't heard anything' [E6].",
+      "sourceIds": [
+        "E5",
+        "E6"
+      ]
+    }
+  ],
+  "openQuestions": [
+    "What specific internal process changes will be implemented to ensure sales commitments are accurately reflected in SOWs and communicated to implementation teams?",
+    "Was there any attempt by Jake Morris or his manager to resolve the scope issue internally or communicate with the client between Ana's internal flag on Sept 1 and Rebecca's escalation on Sept 15?",
+    "What were the reasons for the delay in providing the promised update to the client by September 5?",
+    "What was the ultimate outcome of the go-live on October 21 and the client's satisfaction with the HL7 Phase 2 plan?",
+    "Is there an internal process for sales to get Deal Desk/Implementation approval for custom requirements (like 5-year history or HL7) before they are proposed to the client?"
+  ],
+  "clientReply": "Rebecca, I sincerely apologize for the significant miscommunication and the issues this has caused. You are absolutely right that our initial communications, specifically Jake's email of July 14, set clear expectations for a full 5-year history migration and HL7 support. The signed SOW did not reflect these critical requirements, which was our error. To resolve this, we are committing to migrate your full 5-year history at no additional cost. Your new go-live date will be October 21 to accommodate this. We have also provided the plan for HL7 integration as a Phase 2, with work starting November 2. We are implementing stricter internal processes to ensure commitments made during sales are accurately captured and delivered throughout implementation, preventing such discrepancies in the future. I am personally overseeing your account to ensure a successful resolution.",
+  "generatedAt": "2026-10-16T13:13:36.186Z",
+  "model": "gemini-2.5-flash"
+}

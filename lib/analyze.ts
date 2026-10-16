@@ -1,4 +1,4 @@
-import { MODEL, structured } from "./claude";
+import { structured } from "./llm";
 import { normalizeSources, sourcesToPrompt, type RawSource } from "./ingest";
 import { ExtractionSchema, SegmentSchema, SynthesisSchema } from "./schemas";
 import type { CaseAnalysis, SourceItem } from "./types";
@@ -91,7 +91,7 @@ export async function analyzeCase(sources: SourceItem[]): Promise<CaseAnalysis> 
     openQuestions: synthesis.openQuestions,
     clientReply: synthesis.clientReply,
     generatedAt: new Date().toISOString(),
-    model: MODEL,
+    model: extraction._model,
   };
 }
 

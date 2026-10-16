@@ -1,5 +1,5 @@
 import { analyzeCase, segmentText } from "@/lib/analyze";
-import { errorMessage, hasCredentials } from "@/lib/claude";
+import { errorMessage, hasCredentials } from "@/lib/llm";
 import { normalizeSources, parseUploads, type UploadedFile } from "@/lib/ingest";
 import { rateLimit } from "@/lib/ratelimit";
 import type { CaseFile } from "@/lib/types";
@@ -17,7 +17,7 @@ interface AnalyzeBody {
 
 export async function POST(req: Request) {
   if (!hasCredentials()) {
-    return Response.json({ error: "The server has no Anthropic API key configured." }, { status: 503 });
+    return Response.json({ error: "The server has no AI API key configured." }, { status: 503 });
   }
   if (!rateLimit(req, "analyze", 5, 60 * 60 * 1000)) {
     return Response.json({ error: "Limit reached: 5 analyses per hour. Try a sample case meanwhile." }, { status: 429 });

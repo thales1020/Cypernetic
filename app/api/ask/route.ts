@@ -1,4 +1,4 @@
-import { errorMessage, hasCredentials, streamText } from "@/lib/claude";
+import { errorMessage, hasCredentials, streamText } from "@/lib/llm";
 import { sourcesToPrompt } from "@/lib/ingest";
 import { rateLimit } from "@/lib/ratelimit";
 import type { CaseAnalysis, SourceItem } from "@/lib/types";
@@ -13,7 +13,7 @@ interface AskBody {
 
 export async function POST(req: Request) {
   if (!hasCredentials()) {
-    return new Response("The server has no Anthropic API key configured.", { status: 503 });
+    return new Response("The server has no AI API key configured.", { status: 503 });
   }
   if (!rateLimit(req, "ask", 30, 60 * 60 * 1000)) {
     return new Response("Limit reached: 30 questions per hour.", { status: 429 });
@@ -38,11 +38,10 @@ ${record}
 ${promises ? `\n<extracted_commitments>\n${promises}\n</extracted_commitments>` : ""}`;
 
   try {
-    const stream = streamText({
+    return streamText({
       system,
       messages: messages.slice(-12).map((m) => ({ role: m.role, content: m.content })),
     });
-    return new Response(stream, { headers: { "Content-Type": "text/plain; charset=utf-8" } });
   } catch (err) {
     return new Response(errorMessage(err), { status: 500 });
   }
